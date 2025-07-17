@@ -11,14 +11,11 @@ services:
       test: ["CMD-SHELL", "pg_isready -U user -d dbname"]
       interval: 10s
       retries: 5
+    ports:
+      - "5432:5432"
 
   app:
-    build:    
-      context: .
-      dockerfile: Dockerfile
-    working_dir: /app
-    volumes:
-      - ./:/app
+    image: novaofin-app:latest
     depends_on:
       db:
         condition: service_healthy
@@ -28,12 +25,15 @@ services:
       DB_USER: user
       DB_PASSWORD: password
       DB_NAME: dbname
-      PORT: :3001
+      PORT: ":3001"
       GOOSE_DRIVER: postgres
       GOOSE_DBSTRING: "postgres://user:password@db:5432/dbname?sslmode=disable"
       DB_CONFIG: postgres://user:password@db:5432/dbname?sslmode=disable
+      JWT_SECRET: your_jwt_secret
     ports:
       - "3001:3001"
+    restart: unless-stopped
+
 volumes:
   db-data: {}  # default 'local' driver
 
