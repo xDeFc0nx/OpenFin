@@ -36,7 +36,7 @@ export default function CreateAccount() {
   });
   const activeAccount = React.useMemo(() => {
     if (!activeAccountId) return null;
-    return currentAccounts.find(acc => acc.id === activeAccountId) || null;
+    return currentAccounts.find(acc => acc.ID === activeAccountId) || null;
   }, [activeAccountId, currentAccounts]);
   function handleSubmit(values: z.infer<typeof formSchema>) {
     try {
@@ -51,7 +51,7 @@ export default function CreateAccount() {
           if (response.account) {
             const newAccount: Account = response.account;
             dispatch(addAccount(newAccount));
-            dispatch(setActiveAccount(newAccount.id));
+            dispatch(setActiveAccount(newAccount.ID));
              navigate("/app/dashboard");
           }
 

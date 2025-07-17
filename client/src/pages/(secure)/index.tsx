@@ -37,7 +37,7 @@ export default function Index() {
   const { list: transactions, dateRange } = useSelector((state: RootState) => state.transactions);
   const { list: accounts, activeAccountId, } = useSelector((state: RootState) => state.accounts);
   const userData = useSelector((state: RootState) => state.user.data);
-  const activeAccount = accounts.find((acc) => acc.id === activeAccountId) || null;
+  const activeAccount = accounts.find((acc) => acc.ID === activeAccountId) || null;
   const { socket, isReady } = useWebSocket();
   useEffect(() => {
     const storedAccountJSON = localStorage.getItem("activeAccount");
@@ -82,7 +82,7 @@ export default function Index() {
 
   const handleDateRangeChange = (value: string) => {
     dispatch(setDateRange(value));
-    const activeAccount = accounts.find(acc => acc.id === activeAccountId) || null;
+    const activeAccount = accounts.find(acc => acc.ID === activeAccountId) || null;
     if (socket && activeAccount) {
 
       const messageHandler = (msg: string) => {
@@ -149,7 +149,7 @@ export default function Index() {
             <div className="p-6 pt-0">
               <div className="text-2xl font-bold">
                 {userData?.Currency}
-                {activeAccount?.balance}
+                {activeAccount?.Balance}
               </div>
 
               <BalanceChart />
@@ -165,7 +165,7 @@ export default function Index() {
               <div className="text-2xl font-bold">
                 {" "}
                 {userData?.Currency}
-                {activeAccount?.income}
+                {activeAccount?.Income}
               </div>
               <IncomeChart />
             </div>
@@ -180,7 +180,7 @@ export default function Index() {
               <div className="text-2xl font-bold">
                 {" "}
                 {userData?.Currency}
-                {activeAccount?.expense}
+                {activeAccount?.Expense}
               </div>
               <ExpensesChart />
             </div>

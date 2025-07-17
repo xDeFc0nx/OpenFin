@@ -8,12 +8,12 @@ export interface UserData {
   Country: string;
 }
 export interface Account {
-  id: string;
-  userID: string;
-  income: number;
-  expense: number;
-  balance: number;
-  type: string;
+  ID: string;
+  UserID: string;
+  Income: number;
+  Expense: number;
+  Balance: number;
+  Type: string;
 }
 export interface Transaction {
   ID: string;

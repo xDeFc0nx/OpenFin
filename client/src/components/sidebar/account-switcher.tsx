@@ -63,7 +63,7 @@ export function AccountSwitcher() {
   const { activeAccountId, list: currentAccounts } = useSelector((state: RootState) => state.accounts);
   const activeAccount: Account | null = React.useMemo(() => {
     if (!activeAccountId) return null;
-    return currentAccounts.find(acc => acc.id === activeAccountId) || null;
+    return currentAccounts.find(acc => acc.ID === activeAccountId) || null;
   }, [activeAccountId, currentAccounts]);
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -72,7 +72,7 @@ export function AccountSwitcher() {
     },
   });
   function saveAccount(account: any) {
-    dispatch(setActiveAccount(account.id));
+    dispatch(setActiveAccount(account.ID));
     localStorage.setItem("activeAccount", JSON.stringify(account));
   }
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -164,7 +164,7 @@ export function AccountSwitcher() {
               >
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">
-                    {activeAccount?.type}
+                    {activeAccount?.Type || "No account selected"}
                   </span>
                 </div>
                 <ChevronsUpDown className="ml-auto" />
@@ -181,11 +181,11 @@ export function AccountSwitcher() {
               </DropdownMenuLabel>
               {currentAccounts.map((account) => (
                 <DropdownMenuItem
-                  key={activeAccountId}
+                  key={account.ID}
                   onClick={() => saveAccount(account)}
                   className="gap-2 p-2"
                 >
-                  {account.type}
+                  {account.Type || "Unnamed Account"}
                   <DropdownMenuShortcut>
                     ⌘{currentAccounts.indexOf(account) + 1}
                   </DropdownMenuShortcut>

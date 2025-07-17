@@ -9,13 +9,13 @@ export const columns: ColumnDef<Transaction>[] = [
     header: "Description",
   },
   {
-    accessorKey: "type",
+    accessorKey: "Type",
     header: () => <div className="text-right">Type</div>,
     cell: ({ row }) => <div className="text-right">{row.original.Type}</div>,
   },
 
   {
-    accessorKey: "amount",
+    accessorKey: "Amount",
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
       const amount = row.original.Amount;

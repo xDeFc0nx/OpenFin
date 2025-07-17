@@ -45,7 +45,7 @@ import type { Account } from '@/types';
 const formSchema = z.object({
   Type: z.enum(["Income", "Expense"]),
   Description: z.string().min(1, "Description is required"),
-  Amount: z.number().min(1, "Amount must be greater than 0"),
+  Amount: z.number().min(0, "Amount must be greater than 0"),
   IsRecurring: z.boolean(),
   CreatedAt: z.date(),
 });
@@ -66,7 +66,7 @@ export const AddTransaction = () => {
   });
   const activeAccount: Account | null = React.useMemo(() => {
     if (!activeAccountId) return null;
-    return currentAccounts.find(acc => acc.id === activeAccountId) || null;
+    return currentAccounts.find(acc => acc.ID === activeAccountId) || null;
   }, [activeAccountId, currentAccounts]);
   React.useEffect(() => {
     if (socket && isReady) {
