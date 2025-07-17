@@ -16,10 +16,10 @@ import (
 
 func CreateAccount(ws *websocket.Conn, data json.RawMessage, userID string) {
 	type Request struct {
-		Type    string  `json:"type"`
-		Balance float64 `json:"balance"`
-		Income  float64 `json:"income"`
-		Expense float64 `json:"expense"`
+		Type    string  `json:"Type"`
+		Balance float64 `json:"Balance"`
+		Income  float64 `json:"Income"`
+		Expense float64 `json:"Expense"`
 	}
 	var req Request
 
@@ -70,8 +70,8 @@ func CreateAccount(ws *websocket.Conn, data json.RawMessage, userID string) {
 	response := map[string]any{
 		"account": map[string]any{
 			"accountID": account.ID,
-			"type":      account.Type,
-			"balance":   account.Balance,
+			"Type":      account.Type,
+			"Balance":   account.Balance,
 		},
 	}
 
@@ -105,11 +105,11 @@ func GetAccounts(ws *websocket.Conn, data json.RawMessage, userID string) {
 			continue
 		}
 		accountData = append(accountData, map[string]any{
-			"id":      a.ID,
-			"type":    a.Type,
-			"balance": a.Balance,
-			"income":  a.Income,
-			"expense": a.Expense,
+			"ID":      a.ID,
+			"Type":    a.Type,
+			"Balance": a.Balance,
+			"Income":  a.Income,
+			"Expense": a.Expense,
 		})
 	}
 
@@ -141,11 +141,11 @@ func GetAccount(ws *websocket.Conn, data json.RawMessage, userID string) {
 		SendError(ws, MsgAccountNotFound, err)
 	}
 	accountData := map[string]any{
-		"id":      account.ID,
-		"type":    account.Type,
-		"balance": account.Balance,
-		"income":  account.Income,
-		"expense": account.Expense,
+		"ID":      account.ID,
+		"Type":    account.Type,
+		"Balance": account.Balance,
+		"Income":  account.Income,
+		"Expense": account.Expense,
 	}
 
 	responseData, _ := json.Marshal(accountData)

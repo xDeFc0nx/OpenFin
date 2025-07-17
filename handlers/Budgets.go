@@ -20,10 +20,10 @@ func CreateBudget(ws *websocket.Conn, data json.RawMessage, userID string) {
 	budget.UserID = userID
 
 	type requestData struct {
-		AccountID   string  `json:"accountId"`
-		TotalSpent  float64 `json:"totalSpent"`
-		LimitAmount float64 `json:"limit"`
-		Description string  `json:"description"`
+		AccountID   string  `json:"AccountID"`
+		TotalSpent  float64 `json:"TotalSpent"`
+		LimitAmount float64 `json:"LimitAmount"`
+		Description string  `json:"Description"`
 	}
 
 	var req requestData

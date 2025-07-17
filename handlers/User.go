@@ -18,11 +18,11 @@ import (
 
 func CreateUser(c *fiber.Ctx) error {
 	type Request struct {
-		FirstName string `json:"firstName"`
-		LastName  string `json:"lastName"`
-		Email     string `json:"email"`
-		Password  string `json:"password"`
-		Currency  string `json:"currency"`
+		FirstName string `json:"FirstName"`
+		LastName  string `json:"LastName"`
+		Email     string `json:"Email"`
+		Password  string `json:"Password"`
+		Currency  string `json:"Currency"`
 	}
 	req := Request{}
 
